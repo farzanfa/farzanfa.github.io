@@ -32,7 +32,7 @@
    <link rel="stylesheet" href="css/main.css">   
    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
 
-
+   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
@@ -501,9 +501,8 @@
 								</div>
 							</div>
 						</div>
-
-						<button type="submit" name="submit" id="submit" value="Submit" class="btn btn-default pageclip-form__submit">Send Message</button><!-- Send Button -->
-
+				
+						<button class="g-recaptcha btn btn-default pageclip-form__submit" data-sitekey="6LcvWUIbAAAAAI8JiyBYi8_J-KuSjZy-r_cmu2X3" data-callback='onSubmit' data-action='submit'>Submit</button>
 					</form>
 					<!-- Contact Form end -->
 				</div>
@@ -528,6 +527,11 @@
 <a href="javascript:" id="return-to-top"><i class="fas fa-arrow-up"></i></a>
 
 <!-- SCRIPTS -->
+<script>
+	function onSubmit(token) {
+	  document.getElementById("demo-form").submit();
+	}
+  </script>
 <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 <script src="js/jquery-1.12.3.min.js"></script>
 <script src="js/jquery.easing.min.js"></script>
