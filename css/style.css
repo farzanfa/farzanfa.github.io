@@ -2695,6 +2695,21 @@ body {
             transform: translateX(-7.5px);
   }
 
+  .triangle-bottom-sm:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #FFF;
+    position: absolute;
+    right: 50%;
+    bottom: -10px;
+    -webkit-transform: translateX(-7.5px);
+        -ms-transform: translateX(-7.5px);
+            transform: translateX(-7.5px);
+  }
+
   body.dark .triangle-top-sm:before {
     border-bottom-color: #302f4e;
   }
@@ -2713,6 +2728,18 @@ body {
     border-right: 15px solid #FFF;
     position: absolute;
     left: 0;
+    top: 20%;
+  }
+
+  .triangle-right-md:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #FFF;
+    position: absolute;
+    right: 0;
     top: 20%;
   }
 
