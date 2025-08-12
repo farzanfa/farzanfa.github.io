@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#FBFBFD" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <meta name="robots" content="all">
     <meta name="description" content="Farzan F A - DevOps Engineer specializing in cloud automation, infrastructure management, and CI/CD pipelines. Based in Kerala, India.">
     <meta name="keywords" content="Farzan F A, DevOps Engineer, AWS, Kubernetes, Docker, Linux, Cloud, Automation, CI/CD, EdgyHack, Community Builder, Kerala, India">
@@ -489,12 +492,11 @@
         .experience-timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
+            left: 24px;
             top: 0;
             bottom: 0;
             width: 1px;
             background: var(--border);
-            transform: translateX(-50%);
         }
 
         .timeline-item {
@@ -518,8 +520,7 @@
             background: var(--accent);
             border-radius: 50%;
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 24px;
             z-index: 2;
             border: 3px solid var(--bg-primary);
         }
@@ -529,7 +530,8 @@
             padding: 2rem;
             border-radius: 16px;
             border: 1px solid var(--border);
-            width: calc(50% - 2rem);
+            width: calc(100% - 80px);
+            margin-left: 60px;
             position: relative;
             transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -912,7 +914,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Hi, I'm <span>Farzan F A</span></h1>
-                <p class="subtitle typing-animation" id="typewriter"></p>
+                <p class="subtitle">DevOps engineer — Cloud infrastructure, Kubernetes, CI/CD.</p>
                 <p class="description">
                     Based in Kerala, India, I'm a freelance DevOps Engineer specializing in cloud automation, infrastructure management, and CI/CD pipelines. 
                     With hands-on experience in Linux, AWS, Docker, and Kubernetes, I help businesses build efficient systems 
@@ -1232,74 +1234,6 @@
                 nav.style.background = isLightTheme ? 'rgba(255, 255, 255, 0.7)' : 'rgba(20, 20, 20, 0.7)';
             }
         });
-
-        // Parallax effect for hero background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroBackground = document.querySelector('.hero-background');
-            if (heroBackground) {
-                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Typewriter animation
-        const typewriterElement = document.getElementById('typewriter');
-        const texts = [
-            'DevOps Engineer',
-            'Cloud Consultant', 
-            'Infrastructure Specialist',
-            'CI/CD Expert'
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let isTyping = false;
-
-        function typeWriter() {
-            if (isTyping) return;
-            isTyping = true;
-            
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = 120;
-            if (isDeleting) {
-                typeSpeed = 60;
-            }
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000; // Pause at end
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                typeSpeed = 800; // Pause before next word
-            }
-
-            setTimeout(() => {
-                isTyping = false;
-                typeWriter();
-            }, typeSpeed);
-        }
-
-        // Start typewriter animation after page loads
-        window.addEventListener('load', () => {
-            setTimeout(typeWriter, 1500);
-        });
-
-        // Fallback: if typewriter doesn't start, show first text after 3 seconds
-        setTimeout(() => {
-            if (!typewriterElement.textContent) {
-                typewriterElement.textContent = texts[0];
-            }
-        }, 3000);
 
         // Scroll indicator functionality
         window.addEventListener('scroll', () => {
