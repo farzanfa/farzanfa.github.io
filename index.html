@@ -103,11 +103,23 @@
             filter: invert(1);
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1002;
+        }
+
         .nav-container {
             display: flex;
             align-items: center;
             gap: 3rem;
             padding: 0;
+            justify-content: space-between;
         }
 
         .logo {
@@ -1142,10 +1154,29 @@
             }
         }
 
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Responsive */
         @media (max-width: 968px) {
             .hero-content {
-                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
                 text-align: center;
                 gap: 3rem;
             }
@@ -1191,6 +1222,51 @@
 
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--background);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1.5rem;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: slideDown 0.3s ease-out forwards;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                order: 2;
+            }
+
+            nav {
+                top: 0 !important;
+                left: 0 !important;
+                transform: translate(0) !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 2rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -1215,11 +1291,12 @@
             <div class="logo">
                 <img src="logo.png" alt="Farzan F A">
             </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#journey">Journey</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <!-- <li><a href="#projects">Projects</a></li> -->
                 <li><a href="#articles">Articles</a></li>
             </ul>
             <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
@@ -1233,12 +1310,12 @@
         <div class="hero-content">
             <div class="hero-text">
 
-                <h1 class="hero-name">
+                <h1 class="hero-name animate-fade-in" style="animation-delay: 0.2s;">
                     <span>FARZAN</span>
                     <span class="gradient-text">F A</span>
                 </h1>
 
-                <div class="hero-roles-box">
+                <div class="hero-roles-box animate-fade-in" style="animation-delay: 0.4s;">
                     <div class="role-item">
                         <div class="role-dot tech"></div>
                         <span>DevOps Engineer</span>
@@ -1249,18 +1326,18 @@
                     </div>
                 </div>
 
-                <p class="hero-description">
+                <p class="hero-description animate-fade-in" style="animation-delay: 0.6s;">
                     Architecting cloud infrastructure by day, crafting sports narratives by night.
                     Building scalable systems and telling compelling stories across two worlds.
                 </p>
 
-                <div class="hero-ctas">
-                    <a href="#projects" class="cta-primary">View My Work</a>
+                <div class="hero-ctas animate-fade-in" style="animation-delay: 0.8s;">
+                    <!-- <a href="#projects" class="cta-primary">View My Work</a> -->
                     <a href="#contact" class="cta-secondary">Get in Touch</a>
                 </div>
             </div>
 
-            <div class="hero-image-wrapper">
+            <div class="hero-image-wrapper animate-fade-in" style="animation-delay: 1s;">
                 <div class="hero-image-blob"></div>
                 <img src="DSC034891.JPG" alt="Farzan F A" class="hero-image">
 
@@ -1280,12 +1357,12 @@
 
     <!-- About Section - Bento Grid -->
     <section id="about">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title">About Me</h2>
             <p class="section-subtitle">Two passions, one journey</p>
         </div>
         <div class="about-grid">
-            <div class="bento-item bento-large">
+            <div class="bento-item reveal bento-large">
                 <span class="bento-icon">⚡</span>
                 <h3 class="bento-title">Tech Architect</h3>
                 <p class="bento-text">
@@ -1294,7 +1371,7 @@
                     reliable systems that power businesses forward.
                 </p>
             </div>
-            <div class="bento-item bento-medium">
+            <div class="bento-item reveal bento-medium">
                 <span class="bento-icon">🏆</span>
                 <h3 class="bento-title">Sports Storyteller</h3>
                 <p class="bento-text">
@@ -1302,7 +1379,7 @@
                     life through compelling journalism.
                 </p>
             </div>
-            <div class="bento-item bento-medium">
+            <div class="bento-item reveal bento-medium">
                 <span class="bento-icon">🚀</span>
                 <h3 class="bento-title">Innovation</h3>
                 <p class="bento-text">
@@ -1310,7 +1387,7 @@
                     analytics.
                 </p>
             </div>
-            <div class="bento-item bento-large">
+            <div class="bento-item reveal bento-large">
                 <span class="bento-icon">🌍</span>
                 <h3 class="bento-title">Global Perspective</h3>
                 <p class="bento-text">
@@ -1323,12 +1400,12 @@
 
     <!-- Journey Timeline - Luminous Path -->
     <section id="journey">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title">My Journey</h2>
             <p class="section-subtitle">Building expertise across technology and journalism</p>
         </div>
         <div class="timeline">
-            <div class="timeline-item right tech">
+            <div class="timeline-item reveal right tech">
                 <div class="timeline-dot"></div>
                 <div class="timeline-card tech">
                     <div class="timeline-year">May 2024 - Present</div>
@@ -1340,7 +1417,7 @@
                     </p>
                 </div>
             </div>
-            <div class="timeline-item left sports">
+            <div class="timeline-item reveal left sports">
                 <div class="timeline-dot"></div>
                 <div class="timeline-card sports">
                     <div class="timeline-year">March 2024 - Present</div>
@@ -1352,7 +1429,7 @@
                     </p>
                 </div>
             </div>
-            <div class="timeline-item right tech">
+            <div class="timeline-item reveal right tech">
                 <div class="timeline-dot"></div>
                 <div class="timeline-card tech">
                     <div class="timeline-year">May 2023 - October 2024</div>
@@ -1369,12 +1446,12 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title">Skills & Expertise</h2>
             <p class="section-subtitle">Technical prowess meets creative storytelling</p>
         </div>
         <div class="skills-grid">
-            <div class="skill-category tech">
+            <div class="skill-category reveal tech">
                 <h3>⚡ DevOps & Cloud</h3>
                 <div class="skill-pills">
                     <span class="skill-pill">AWS</span>
@@ -1394,7 +1471,7 @@
                     <span class="skill-pill">ELK Stack</span>
                 </div>
             </div>
-            <div class="skill-category sports">
+            <div class="skill-category reveal sports">
                 <h3>🏆 Sports Journalism</h3>
                 <div class="skill-pills">
                     <span class="skill-pill">Match Analysis</span>
@@ -1412,13 +1489,15 @@
     </section>
 
     <!-- Projects Section -->
+    <!-- Projects Section -->
+    <!--
     <section id="projects">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">Building and creating across domains</p>
         </div>
         <div class="projects-grid">
-            <div class="project-card tech">
+            <div class="project-card reveal tech">
                 <h3 class="project-title">Enterprise Cloud Migration</h3>
                 <p class="project-description">
                     Led migration of legacy infrastructure to AWS. Implemented IaC with Terraform,
@@ -1430,7 +1509,7 @@
                     <span class="project-tag">CI/CD</span>
                 </div>
             </div>
-            <div class="project-card tech">
+            <div class="project-card reveal tech">
                 <h3 class="project-title">Kubernetes Platform Engineering</h3>
                 <p class="project-description">
                     Designed containerized microservices architecture. Automated deployments with ArgoCD,
@@ -1442,7 +1521,7 @@
                     <span class="project-tag">ArgoCD</span>
                 </div>
             </div>
-            <div class="project-card tech">
+            <div class="project-card reveal tech">
                 <h3 class="project-title">CI/CD Pipeline Automation</h3>
                 <p class="project-description">
                     Built automated deployment pipelines using GitLab CI. Implemented testing, security
@@ -1454,7 +1533,7 @@
                     <span class="project-tag">Automation</span>
                 </div>
             </div>
-            <div class="project-card sports">
+            <div class="project-card reveal sports">
                 <h3 class="project-title">Sporton Media Platform</h3>
                 <p class="project-description">
                     Co-founded comprehensive sports media platform. Developed editorial guidelines,
@@ -1466,7 +1545,7 @@
                     <span class="project-tag">Content</span>
                 </div>
             </div>
-            <div class="project-card sports">
+            <div class="project-card reveal sports">
                 <h3 class="project-title">Live Sports Coverage</h3>
                 <p class="project-description">
                     Real-time coverage of ISL, cricket tournaments, football championships. On-field
@@ -1478,7 +1557,7 @@
                     <span class="project-tag">Live Coverage</span>
                 </div>
             </div>
-            <div class="project-card sports">
+            <div class="project-card reveal sports">
                 <h3 class="project-title">In-Depth Sports Analysis</h3>
                 <p class="project-description">
                     Comprehensive articles including match previews, player profiles, tactical analyses.
@@ -1492,16 +1571,17 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Articles Section -->
     <section id="articles">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title">Latest from Sporton Media</h2>
             <p class="section-subtitle">Stories that bring sports to life</p>
         </div>
         <div class="articles-grid">
             <!-- Article 1 -->
-            <a href="https://sportonmedia.in/rashid-nalakath-bfc-first-indian-gk-coach/" class="article-card"
+            <a href="https://sportonmedia.in/rashid-nalakath-bfc-first-indian-gk-coach/" class="article-card reveal"
                 target="_blank">
                 <img src="https://sportonmedia.in/wp-content/uploads/2025/10/Heading.webp" alt="Rashid Nalakath"
                     class="article-image">
@@ -1519,8 +1599,8 @@
             </a>
 
             <!-- Article 2 -->
-            <a href="https://sportonmedia.in/ipl-2026-retention-list-big-calls-before-auction/" class="article-card"
-                target="_blank">
+            <a href="https://sportonmedia.in/ipl-2026-retention-list-big-calls-before-auction/"
+                class="article-card reveal" target="_blank">
                 <img src="https://sportonmedia.in/wp-content/uploads/2025/11/Dewatermark_1763300018484.webp"
                     alt="IPL 2026" class="article-image">
                 <span class="article-category">Cricket</span>
@@ -1536,7 +1616,7 @@
 
             <!-- Article 3 -->
             <a href="https://sportonmedia.in/isl-premier-league-consortium-revival-indian-football/"
-                class="article-card" target="_blank">
+                class="article-card reveal" target="_blank">
                 <img src="https://sportonmedia.in/wp-content/uploads/2025/11/Untitled-design-1.webp"
                     alt="ISL Consortium" class="article-image">
                 <span class="article-category">Football</span>
@@ -1552,8 +1632,8 @@
             </a>
 
             <!-- Article 4 -->
-            <a href="https://sportonmedia.in/shameel-chembakath-interview-rf-young-champs-u19/" class="article-card"
-                target="_blank">
+            <a href="https://sportonmedia.in/shameel-chembakath-interview-rf-young-champs-u19/"
+                class="article-card reveal" target="_blank">
                 <img src="https://sportonmedia.in/wp-content/uploads/2025/07/EXCLUSIVE-1-1.webp"
                     alt="Shameel Chembakath" class="article-image">
                 <span class="article-category">Interview</span>
@@ -1568,8 +1648,8 @@
             </a>
 
             <!-- Article 5 -->
-            <a href="https://sportonmedia.in/scam-2025-messi-saga-argentina-wont-play-in-kerala/" class="article-card"
-                target="_blank">
+            <a href="https://sportonmedia.in/scam-2025-messi-saga-argentina-wont-play-in-kerala/"
+                class="article-card reveal" target="_blank">
                 <img src="https://sportonmedia.in/wp-content/uploads/2025/10/221218-argentina-world-cup-trophy-jm-1353-bd9669.webp"
                     alt="Messi Saga" class="article-image">
                 <span class="article-category">Football</span>
@@ -1585,8 +1665,8 @@
             </a>
 
             <!-- Article 6 -->
-            <a href="https://sportonmedia.in/indian-football-crisis-isl-national-team-reform/" class="article-card"
-                target="_blank">
+            <a href="https://sportonmedia.in/indian-football-crisis-isl-national-team-reform/"
+                class="article-card reveal" target="_blank">
                 <img src="https://sportonmedia.in/wp-content/uploads/2025/07/indian-footbal-crisis-1.jpg"
                     alt="Indian Football Crisis" class="article-image">
                 <span class="article-category">Analysis</span>
@@ -1602,7 +1682,7 @@
             </a>
 
         </div>
-        <div class="articles-footer">
+        <div class="articles-footer reveal">
             <a href="https://sportonmedia.in/author/farzan/" class="btn-sporton" target="_blank">
                 Read More at Sporton →
             </a>
@@ -1611,7 +1691,7 @@
 
     <!-- Footer - Statement -->
     <footer id="contact">
-        <div class="footer-content">
+        <div class="footer-content reveal">
             <div class="footer-cta">LET'S WORK<br>TOGETHER</div>
 
             <div class="footer-links">
@@ -1660,6 +1740,41 @@
 
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            const btn = document.querySelector('.mobile-menu-btn');
+            btn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        }
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    document.querySelector('.mobile-menu-btn').textContent = '☰';
+                }
             });
         });
     </script>
