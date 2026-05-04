@@ -326,18 +326,103 @@ export default function Home() {
 
       {/* Footer */}
       <motion.footer
-        className="w-full flex flex-col items-center gap-4 pt-2 pb-12"
+        className="w-full px-6 lg:px-12 pt-8 pb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
         viewport={{ once: true, margin: "-50px" }}
       >
-        <div className="flex items-center gap-3">
-          <img src="/star.svg" alt="" className="w-5 h-5 invert opacity-70 animate-spin" style={{ animationDuration: "4s" }} draggable={false} />
-          <p className="font-[family-name:var(--font-noto)] text-[13px] tracking-wide" style={{ color: "#E7E5E4" }}>
-            Build with Claude Code · Shipped on Vercel
-          </p>
-          <img src="/star.svg" alt="" className="w-5 h-5 invert opacity-70 animate-spin" style={{ animationDuration: "4s" }} draggable={false} />
+        <div className="mx-auto max-w-[1100px]">
+          {/* Hairline divider */}
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
+
+          {/* Three-zone footer */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
+            {/* Left — copyright */}
+            <p className="font-mono text-[11px] text-stone-500">
+              <span className="text-emerald-400">$</span> echo &quot;© 2026 Farzan F A · {" "}
+              <a
+                href="https://farzanfa.com"
+                className="text-stone-300 hover:text-white transition-colors"
+              >
+                farzanfa.com
+              </a>
+              &quot;
+            </p>
+
+            {/* Center — build credits */}
+            <div className="flex items-center gap-3">
+              <img
+                src="/star.svg"
+                alt=""
+                className="w-3 h-3 invert opacity-50 animate-spin"
+                style={{ animationDuration: "5s" }}
+                draggable={false}
+              />
+              <p className="font-mono text-[11px] text-stone-500 whitespace-nowrap">
+                Built with{" "}
+                <a
+                  href="https://www.anthropic.com/claude-code"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-stone-300 hover:text-white transition-colors"
+                >
+                  Claude Code
+                </a>
+                {" "}· Shipped on{" "}
+                <a
+                  href="https://vercel.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-stone-300 hover:text-white transition-colors"
+                >
+                  Vercel
+                </a>
+              </p>
+              <img
+                src="/star.svg"
+                alt=""
+                className="w-3 h-3 invert opacity-50 animate-spin"
+                style={{ animationDuration: "5s", animationDirection: "reverse" }}
+                draggable={false}
+              />
+            </div>
+
+            {/* Right — inspired by */}
+            <p className="font-mono text-[11px] text-stone-500">
+              Inspired by{" "}
+              <a
+                href="https://yanliuportfolio.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-300 hover:text-amber-200 underline decoration-amber-300/40 hover:decoration-amber-200 underline-offset-2 transition-colors"
+              >
+                Yan Liu&apos;s portfolio
+              </a>
+              {" "}↗
+            </p>
+          </div>
+
+          {/* Terminal sign-off + back-to-top */}
+          <div className="mt-6 flex items-center justify-between font-mono text-[10px] text-stone-600">
+            <span>
+              <span className="text-emerald-400">$</span> # made in trivandrum,
+              kerala — with chai &amp; curiosity
+            </span>
+            <a
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="hover:text-stone-300 transition-colors group"
+            >
+              <span>back to top</span>
+              <span className="ml-1 inline-block transition-transform group-hover:-translate-y-0.5">
+                ↑
+              </span>
+            </a>
+          </div>
         </div>
       </motion.footer>
 
